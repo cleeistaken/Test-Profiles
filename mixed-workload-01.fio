@@ -1,0 +1,53 @@
+; Sample mixed workload #1
+; 
+; This test profile assumes a VM with 4 test disks
+;
+; FIO test as follows
+; - Use 100% of the /dev/sda-sdd disks
+; - sda is 8k random read write (50% R/W split) (100% random)
+; - sdb is 16k random read write (50% R/W split) (100% random)
+; - sdc is 32k random read write (50% R/W split) (100% random)
+; - sdd is 32k random read (90% sequential, 10% random)
+;
+
+[global]
+ioengine=libaio
+direct=1
+time_based
+runtime=300
+startdelay=10
+norandommap
+group_reporting
+disk_util=0
+continue_on_error=all
+rate_process=poisson
+
+[sda]
+size=100%
+filename=/dev/sda
+bs=8k
+rw=randrw
+iodepth=8
+
+[sdb]
+size=100%
+bs=16k
+filename=/dev/sdb
+rw=randrw
+iodepth=8
+
+[sdc]
+size=100%
+filename=/dev/sdc
+bs=32k
+rw=randrw
+iodepth=8
+
+[sdd]
+size=100%
+filename=/dev/sdd
+bs=32k
+rw=randwrite
+percentage_random=10
+iodepth=1
+rate_iops=150
