@@ -1,0 +1,74 @@
+; VDI test profile 
+; 
+; This test profile assumes a VM with a single test disk and 4 vCPU. 
+;
+; FIO test as follows
+; - Use 100% of the /dev/sda disk size
+; - Split the reads on the first 80% of writes on the remaining 20%
+;   - Read Queue Depth: 8
+;   - Read IOPS: 40
+;   - Read block sizes
+;     - 80% at 8K
+;     - 20% at 32K
+;
+;   - Write IOPS 10
+;   - Write Queue Depth 1
+;   - Write block sizes
+;     - 70% at 8K
+;     - 10% at 32k
+;     - 10% at 128K
+;
+; - CPU utilization 15% asymmetrically distributed
+;   - CPU 0 at 30%
+;   - CPU 1 at 10% 
+;   - CPU 2 at 10%
+;   - CPU 3 at 10%
+
+[global]
+ioengine=libaio
+direct=1
+norandommap
+time_based
+runtime=300
+startdelay=60
+group_reporting
+disk_util=0
+continue_on_error=all
+rate_process=poisson
+
+[read]
+filename=/dev/sda
+size=80%
+offset=0%
+bs=8k
+bssplit=8k/80:32k/20
+rw=randread
+rate_iops=40
+iodepth=8
+percentage_random=80
+
+[write]
+filename=/dev/sda
+size=20%
+offset=80%
+bs=8k
+bssplit=8k/70:32k/10:128k/10
+rw=randwrite
+rate_iops=10
+percentage_random=20
+
+[cpu0]
+ioengine=cpuio
+cpuload=30
+
+[cpu1]
+ioengine=cpuio
+cpuload=10
+
+[cpu2]
+ioengine=cpuio
+cpuload=10
+
+[cpu3]
+ioengine=cpuio
+cpuload=10
