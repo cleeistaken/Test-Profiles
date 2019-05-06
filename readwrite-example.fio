@@ -1,0 +1,70 @@
+#
+# Sample showing different types of readwrite options
+#
+[global]
+runtime=300
+time_based
+ioengine=libaio
+direct=1
+group_reporting
+continue_on_error=all
+
+# Sequential write
+[job0]
+filename=/dev/sda
+size=100%
+bs=4k
+rw=write
+iodepth=8
+
+# Random write with 100% random
+[job1]
+filename=/dev/sdb
+size=100%
+bs=4k
+rw=randwrite
+iodepth=8
+
+# Writes with random 70%
+[job2]
+filename=/dev/sdc
+size=100%
+bs=4k
+rw=randwrite
+percentage_random=70%
+iodepth=8
+
+# Sequential read
+[job3]
+filename=/dev/sdd
+size=100%
+bs=4k
+rw=read
+iodepth=8
+
+# Random read with 100% random
+[job4]
+filename=/dev/sde
+size=100%
+bs=4k
+rw=randread
+iodepth=8
+
+# Read with random %
+[job5]
+filename=/dev/sde
+size=100%
+bs=4k
+rw=randread
+percentage_random=70%
+iodepth=8
+
+# Read-Write with with 80% read and 90% random
+[job6]
+filename=/dev/sdf
+size=100%
+bs=4k
+rw=randrw
+rwmixread=80%
+percentage_random=90%
+iodepth=8
