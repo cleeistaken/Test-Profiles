@@ -1,0 +1,49 @@
+; Auto generated FIO parameter file
+; block_size:     4k
+; testing_time:   300
+; interval_time:  None
+; warmup_time:    60
+; nb_disks:       4
+; io_rate:        None
+; read_pct:       100
+; random_pct:     100
+; nb_threads:     4
+; working_set:    100
+
+[global]
+runtime=300
+time_based=1
+ramp_time=60
+readwrite=randwrite
+blocksize=4K
+ioengine=libaio
+group_reporting
+continue_on_error=all
+
+[job0]
+filename=/dev/sda
+rate_iops=170
+direct=1
+size=100%
+iodepth=4
+
+[job1]
+filename=/dev/sdb
+rate_iops=170
+direct=1
+size=100%
+iodepth=4
+
+[job2]
+filename=/dev/sdc
+rate_iops=170
+direct=1
+size=100%
+iodepth=4
+
+[job3]
+filename=/dev/sdd
+rate_iops=170
+direct=1
+size=100%
+iodepth=4
