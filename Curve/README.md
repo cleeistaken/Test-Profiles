@@ -80,7 +80,14 @@ W_LATENCY     = 1.96 ms
 ### 90% of Max
 ```
 =============================
-
+JOB_NAME      = job0
+VMs           = 16
+IOPS          = 24447.62 IO/S
+THROUGHPUT    = 97.00 MB/s
+R_LATENCY     = 0.00 ms
+W_LATENCY     = 2.12 ms
+95%tile_R_LAT = 0.00 ms
+95%tile_W_LAT = 4.00 ms
 =============================
 ```
 425 IOPS x 0.9 = 382 IOPS_RATE
@@ -88,7 +95,14 @@ W_LATENCY     = 1.96 ms
 ### 95% of Max
 ```
 =============================
-
+JOB_NAME      = job0
+VMs           = 16
+IOPS          = 25919.80 IO/S
+THROUGHPUT    = 103.00 MB/s
+R_LATENCY     = 0.00 ms
+W_LATENCY     = 2.46 ms
+95%tile_R_LAT = 0.00 ms
+95%tile_W_LAT = 4.00 ms
 =============================
 ```
 425 IOPS x 0.95 = 403 IOPS_RATE
