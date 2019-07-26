@@ -1,0 +1,94 @@
+; Auto generated FIO parameter file
+; block_size:     4
+; testing_time:   7200 
+; interval_time:  None
+; warmup_time:    3600
+; nb_disks:       8
+; io_rate:        None
+; read_pct:       70
+; random_pct:     100
+; nb_threads:     8
+; working_set:    100
+; nb_cpus:        4
+; cpuio:          80
+
+[global]
+runtime=7200
+time_based=1
+ramp_time=3600
+readwrite=randrw
+percentage_random=100
+rwmixread=70
+random_generator=tausworthe64
+blocksize=4
+ioengine=libaio
+group_reporting
+continue_on_error=all
+
+[job0]
+filename=/dev/sda
+direct=1
+size=100%
+iodepth=8
+
+[job1]
+filename=/dev/sdb
+direct=1
+size=100%
+iodepth=8
+
+[job2]
+filename=/dev/sdc
+direct=1
+size=100%
+iodepth=8
+
+[job3]
+filename=/dev/sdd
+direct=1
+size=100%
+iodepth=8
+
+[job4]
+filename=/dev/sde
+direct=1
+size=100%
+iodepth=8
+
+[job5]
+filename=/dev/sdf
+direct=1
+size=100%
+iodepth=8
+
+[job6]
+filename=/dev/sdg
+direct=1
+size=100%
+iodepth=8
+
+[job7]
+filename=/dev/sdh
+direct=1
+size=100%
+iodepth=8
+
+[cpu0]
+norandommap
+ioengine=cpuio
+cpuload=80
+
+[cpu1]
+norandommap
+ioengine=cpuio
+cpuload=80
+
+[cpu2]
+norandommap
+ioengine=cpuio
+cpuload=80
+
+[cpu3]
+norandommap
+ioengine=cpuio
+cpuload=80
